@@ -1,14 +1,25 @@
 import Todo from "./Todo";
-import { todoListProps } from "../types/propsType";
+import { useContext } from "react";
+import TodoListDataContext from "../contexts/TodoListData";
 
-const TodoList: React.FC<todoListProps> = ({ todoListData }) => {
-  return (
-    <div>
-      {todoListData.map((todo) => (
-        <Todo key={todo.id} {...todo} />
-      ))}
-    </div>
-  );
+interface TodoListProps {
+	done: boolean;
+}
+
+const TodoList: React.FC<TodoListProps> = ({ done }) => {
+	const todoListData = useContext(TodoListDataContext);
+	return (
+		<div>
+			<h2>Todo List({done ? "done" : "WIP"})</h2>
+			{todoListData
+				.filter((todo) => {
+					return todo.done === done;
+				})
+				.map((todo) => (
+					<Todo key={todo.id} {...todo} />
+				))}
+		</div>
+	);
 };
 
 export default TodoList;

@@ -1,14 +1,12 @@
 import "./App.css";
 import TodoList from "./components/TodoList";
-import { TodoListdata } from "./tmp";
-
 
 function App() {
-  return (
-    <>
-    <TodoList todoListData={TodoListdata} />
-    </>
-  );
+	return (
+		<>
+			<TodoList done={false} />
+		</>
+	);
 }
 
 export default App;
