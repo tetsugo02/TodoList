@@ -4,7 +4,7 @@ import TodoList from "./components/TodoList";
 function App() {
 	return (
 		<>
-			<TodoList done={false} />
+			<TodoList isDone={false} />
 		</>
 	);
 }

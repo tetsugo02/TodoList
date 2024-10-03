@@ -1,5 +1,5 @@
-import { todoType } from "./TodoType";
+import { TodoType } from "./TodoType";
 
 export interface todoListProps {
-  todoListData: todoType[];
+  todoListData: TodoType[];
 }
