@@ -1,10 +1,12 @@
-import "./App.css";
+// import "./App.css";
+import AddNewTodo from "./components/AddNewTodo";
 import TodoList from "./components/TodoList";
 
 function App() {
 	return (
 		<>
 			<TodoList isDone={false} />
+			<AddNewTodo />
 		</>
 	);
 }
