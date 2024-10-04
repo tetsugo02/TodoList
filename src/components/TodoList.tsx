@@ -1,21 +1,29 @@
-import Todo from "./Todo";
-import { useContext, useState } from "react";
-import TodoListDataContext from "../contexts/TodoListData";
-import { TodoType } from "../types/TodoType";
+import Todo from "./Todo"; //コンポーネントをインポート
+import { useContext } from "react"; // Reactのフックをインポート
+import TodoListDataContext from "../contexts/TodoListData"; //ListDataContextをインポート
 
+//Listコンポーネントのプロパティの型定義
 interface TodoListProps {
-	isDone: boolean;
+	isDone: boolean; // isDoneプロパティはTodoの完了状態を示す
 }
 
+//Listコンポーネントの定義
 const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
-	const todoListData = useContext(TodoListDataContext);
-	const [todos, setTodos] = useState<TodoType[]>(todoListData);
+	// useContextフックを使用してTodoListDataContextからデータを取得
+	const context = useContext(TodoListDataContext);
 
+	if (!context) {
+		throw new Error("TodoList must be used within a TodoListDataProvider");
+	}
+
+	const { todos, setTodos } = context;
+
+	//の完了状態を切り替える関数
 	const onToggleDone = (id: string) => {
 		setTodos((prevTodos) => {
 			return prevTodos.map((todo) => {
 				if (todo.id === id) {
-					return { ...todo, done: !todo.done };
+					return { ...todo, done: !todo.done }; // doneプロパティを反転
 				}
 				return todo;
 			});
@@ -24,16 +32,16 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 
 	return (
 		<div>
-			<h2>Todo List({isDone ? "done" : "WIP"})</h2>
+			<h2>Todo List({isDone ? "done" : "WIP"})</h2> {/* タイトルを表示 */}
 			{todos
 				.filter((todo) => {
-					return todo.done === isDone;
+					return todo.done === isDone; // isDoneプロパティに基づいてフィルタリング
 				})
 				.map((todo) => (
-					<Todo key={todo.id} {...todo} onToggle={onToggleDone} />
+					<Todo key={todo.id} {...todo} onToggle={onToggleDone} /> //コンポーネントをレンダリング
 				))}
 		</div>
 	);
 };
 
-export default TodoList;
+export default TodoList; //Listコンポーネントをエクスポート
