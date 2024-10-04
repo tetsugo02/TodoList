@@ -1,7 +1,6 @@
 import { createContext } from "react";
-import { TodoListdata } from "../tmp";
 import { TodoType } from "../types/TodoType";
 
-const TodoListDataContext = createContext<TodoType[]>(TodoListdata);
+const TodoListDataContext = createContext<TodoType[]>([]);
 
 export default TodoListDataContext;
