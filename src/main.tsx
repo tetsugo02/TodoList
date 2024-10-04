@@ -1,13 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { TodoListdata } from "./tmp.tsx";
 import App from "./App";
-import TodoListDataContext from "./contexts/TodoListData.tsx";
+import { TodoListDataProvider } from "./contexts/TodoListData";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<TodoListDataContext.Provider value={TodoListdata}>
+		<TodoListDataProvider>
 			<App />
-		</TodoListDataContext.Provider>
+		</TodoListDataProvider>
 	</StrictMode>
 );
