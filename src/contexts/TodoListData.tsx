@@ -13,7 +13,11 @@ const TodoListDataContext = createContext<TodoListDataContextType | undefined>(u
 // プロバイダーコンポーネントの定義
 export const TodoListDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [todos, setTodos] = useState<TodoType[]>(TodoListdata);
-	return <TodoListDataContext.Provider value={{ todos, setTodos }}>{children}</TodoListDataContext.Provider>;
+	return (
+		<TodoListDataContext.Provider value={{ todos, setTodos }}>
+			{children}
+		</TodoListDataContext.Provider>
+	);
 };
 
 export default TodoListDataContext;

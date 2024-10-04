@@ -1,7 +1,10 @@
 import { useContext, useState } from "react";
-import { TodoType } from "../types/TodoType";
 import { v4 as uuidv4 } from "uuid";
+import dayjs, { Dayjs } from "dayjs";
+
+import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
+import BasicDatePicker from "./styled/TimePicker";
 
 const AddNewTodo = () => {
 	const todoContext = useContext(TodoListDataContext);
@@ -20,12 +23,19 @@ const AddNewTodo = () => {
 
 	const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
-		setNewTodo((prev) => {
-			return {
+		setNewTodo((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	const handleDateChange = (date: Dayjs | null) => {
+		if (date) {
+			setNewTodo((prev) => ({
 				...prev,
-				[name]: value,
-			};
-		});
+				deadline: date.format("YYYY-MM-DD"),
+			}));
+		}
 	};
 
 	const handleAddTodo = () => {
@@ -34,17 +44,38 @@ const AddNewTodo = () => {
 			id: uuidv4(),
 		};
 		setTodos([...todos, newTodoWithId]);
+		setNewTodo({
+			id: "",
+			title: "",
+			description: "",
+			done: false,
+			deadline: "",
+		});
 	};
+
 	return (
 		<div>
 			<div>
-				<input type="text" placeholder="Title" name="title" value={newTodo.title} onChange={onHandleChange} />
+				<input
+					type="text"
+					placeholder="Title"
+					name="title"
+					value={newTodo.title}
+					required
+					onChange={onHandleChange}
+				/>
 			</div>
 			<div>
-				<input type="text" placeholder="Description" name="description" value={newTodo.description} onChange={onHandleChange} />
+				<input
+					type="text"
+					placeholder="Description"
+					name="description"
+					value={newTodo.description}
+					onChange={onHandleChange}
+				/>
 			</div>
 			<div>
-				<input type="date" name="deadline" value={newTodo.deadline} onChange={onHandleChange} />
+				<BasicDatePicker value={dayjs(newTodo.deadline)} onChange={handleDateChange} />
 			</div>
 			<button onClick={handleAddTodo}>Add</button>
 		</div>
