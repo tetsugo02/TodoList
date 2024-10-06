@@ -2,19 +2,25 @@ import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
-import { TextField } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 
 import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
 import BasicDatePicker from "./TimePicker";
 
-const StyledAddNewTodo = styled.div`
+const StyledAddNewTodo = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 `;
 const StyledTextField = styled(TextField)`
 	width: 270px;
+`;
+const StyledButton = styled(Button)`
+	width: 270px;
+`;
+const StyledBox = styled(Box)`
+	margin: 10px;
 `;
 
 const AddNewTodo = () => {
@@ -90,7 +96,11 @@ const AddNewTodo = () => {
 			<div>
 				<BasicDatePicker value={dayjs(newTodo.deadline)} onChange={handleDateChange} />
 			</div>
-			<button onClick={handleAddTodo}>Add</button>
+			<StyledBox>
+				<StyledButton variant="contained" onClick={handleAddTodo}>
+					Add
+				</StyledButton>
+			</StyledBox>
 			{newTodo.deadline}
 		</StyledAddNewTodo>
 	);

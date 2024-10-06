@@ -5,6 +5,7 @@ function App() {
 	return (
 		<>
 			<TodoList isDone={false} />
+			<TodoList isDone={true} />
 			<AddNewTodo />
 		</>
 	);
