@@ -1,22 +1,36 @@
 import React from "react";
-import { TodoType } from "../types/TodoType";
+import styled from "styled-components";
 
-interface TodoProps extends TodoType {
-	onToggle: (id: string) => void;
+interface TodoProps {
+    id: string;
+    title: string;
+    description: string;
+    done: boolean;
+    deadline: string;
+    onToggle: (id: string) => void;
+    onDelete: (id: string) => void;
 }
-const Todo: React.FC<TodoProps> = ({ id, title, description, deadline, done, onToggle }) => {
-	return (
-		<div>
-			<b>
-				<p>
-					{title}
-					<button onClick={() => onToggle(id)}>Done</button>
-				</p>
-			</b>
-			<p>{description}</p>
-			<p>{deadline}</p>
-			<p>{done ? "Done" : "Not Done"}</p>
-		</div>
-	);
+
+const TodoItem = styled.div`
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const Todo: React.FC<TodoProps> = ({ id, title, description, done, deadline, onToggle, onDelete }) => {
+    return (
+        <TodoItem>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <p>{deadline}</p>
+            <button onClick={() => onToggle(id)}>{done ? "Undo" : "Done"}</button>
+            <button onClick={() => onDelete(id)}>Delete</button>
+        </TodoItem>
+    );
 };
+
 export default Todo;

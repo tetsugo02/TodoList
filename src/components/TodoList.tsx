@@ -37,6 +37,13 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 		});
 	};
 
+	// Todoを削除する関数
+	const onDeleteTodo = (id: string) => {
+		setTodos((prevTodos) => {
+			return prevTodos.filter((todo) => todo.id !== id);
+		});
+	};
+
 	return (
 		<StyledTodoList>
 			<h2>Todo List({isDone ? "done" : "WIP"})</h2> {/* タイトルを表示 */}
@@ -45,7 +52,7 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 					return todo.done === isDone; // isDoneプロパティに基づいてフィルタリング
 				})
 				.map((todo) => (
-					<Todo key={todo.id} {...todo} onToggle={onToggleDone} /> //コンポーネントをレンダリング
+					<Todo key={todo.id} {...todo} onToggle={onToggleDone} onDelete={onDeleteTodo} /> //コンポーネントをレンダリング
 				))}
 		</StyledTodoList>
 	);

@@ -1,6 +1,6 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { TodoType } from "../types/TodoType";
-import { TodoListdata } from "../tmp";
+import { loadTodos, saveTodos } from "../utils/localstorage";
 
 interface TodoListDataContextType {
 	todos: TodoType[];
@@ -12,7 +12,12 @@ const TodoListDataContext = createContext<TodoListDataContextType | undefined>(u
 
 // プロバイダーコンポーネントの定義
 export const TodoListDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [todos, setTodos] = useState<TodoType[]>(TodoListdata);
+	const [todos, setTodos] = useState<TodoType[]>(loadTodos);
+
+	useEffect(() => {
+		saveTodos(todos);
+	}, [todos]);
+
 	return (
 		<TodoListDataContext.Provider value={{ todos, setTodos }}>
 			{children}
