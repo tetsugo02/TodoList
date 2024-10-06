@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, FormControl, FormHelperText } from "@mui/material";
 
 import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
@@ -38,12 +38,17 @@ const AddNewTodo = () => {
 		deadline: "",
 	});
 
+	const [titleError, setTitleError] = useState<boolean>(false);
+
 	const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setNewTodo((prev) => ({
 			...prev,
 			[name]: value,
 		}));
+		if (name === "title") {
+			setTitleError(value.trim() === "");
+		}
 	};
 
 	const handleDateChange = (date: Dayjs | null) => {
@@ -68,11 +73,12 @@ const AddNewTodo = () => {
 			done: false,
 			deadline: "",
 		});
+		setTitleError(false);
 	};
 
 	return (
 		<StyledAddNewTodo>
-			<div>
+			<FormControl error={titleError}>
 				<StyledTextField
 					type="text"
 					placeholder="Title"
@@ -81,7 +87,8 @@ const AddNewTodo = () => {
 					required
 					onChange={onHandleChange}
 				/>
-			</div>
+				{titleError && <FormHelperText>Title is required and cannot be empty</FormHelperText>}
+			</FormControl>
 			<div>
 				<StyledTextField
 					type="text"
@@ -97,11 +104,14 @@ const AddNewTodo = () => {
 				<BasicDatePicker value={dayjs(newTodo.deadline)} onChange={handleDateChange} />
 			</div>
 			<StyledBox>
-				<StyledButton variant="contained" onClick={handleAddTodo}>
+				<StyledButton
+					variant="contained"
+					onClick={handleAddTodo}
+					disabled={newTodo.title.trim() === ""}
+				>
 					Add
 				</StyledButton>
 			</StyledBox>
-			{newTodo.deadline}
 		</StyledAddNewTodo>
 	);
 };
