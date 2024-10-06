@@ -1,13 +1,20 @@
 import Todo from "./Todo"; //コンポーネントをインポート
 import { useContext } from "react"; // Reactのフックをインポート
-import TodoListDataContext from "../contexts/TodoListData"; //ListDataContextをインポート
+import TodoListDataContext from "../contexts/TodoListData";
+import styled from "styled-components"; // styled-componentsをインポート
 
 //Listコンポーネントのプロパティの型定義
 interface TodoListProps {
 	isDone: boolean; // isDoneプロパティはTodoの完了状態を示す
 }
 
-//Listコンポーネントの定義
+// スタイルドコンポーネントとしてTodoListをラップ
+const StyledTodoList = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
 const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 	// useContextフックを使用してTodoListDataContextからデータを取得
 	const context = useContext(TodoListDataContext);
@@ -31,7 +38,7 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 	};
 
 	return (
-		<div>
+		<StyledTodoList>
 			<h2>Todo List({isDone ? "done" : "WIP"})</h2> {/* タイトルを表示 */}
 			{todos
 				.filter((todo) => {
@@ -40,7 +47,7 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 				.map((todo) => (
 					<Todo key={todo.id} {...todo} onToggle={onToggleDone} /> //コンポーネントをレンダリング
 				))}
-		</div>
+		</StyledTodoList>
 	);
 };
 

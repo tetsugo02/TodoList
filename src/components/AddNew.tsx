@@ -1,10 +1,17 @@
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
+import styled from "styled-components";
 
 import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
-import BasicDatePicker from "./styled/TimePicker";
+import BasicDatePicker from "./TimePicker";
+
+const StyledAddNewTodo = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
 
 const AddNewTodo = () => {
 	const todoContext = useContext(TodoListDataContext);
@@ -33,7 +40,7 @@ const AddNewTodo = () => {
 		if (date) {
 			setNewTodo((prev) => ({
 				...prev,
-				deadline: date.format("YYYY-MM-DD"),
+				deadline: date.format("YYYY-MM-DD HH:mm"),
 			}));
 		}
 	};
@@ -54,7 +61,7 @@ const AddNewTodo = () => {
 	};
 
 	return (
-		<div>
+		<StyledAddNewTodo>
 			<div>
 				<input
 					type="text"
@@ -78,7 +85,8 @@ const AddNewTodo = () => {
 				<BasicDatePicker value={dayjs(newTodo.deadline)} onChange={handleDateChange} />
 			</div>
 			<button onClick={handleAddTodo}>Add</button>
-		</div>
+			{newTodo.deadline}
+		</StyledAddNewTodo>
 	);
 };
 
