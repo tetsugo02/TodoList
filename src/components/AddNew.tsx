@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
+import { TextField } from "@mui/material";
 
 import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
@@ -11,6 +12,9 @@ const StyledAddNewTodo = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+`;
+const StyledTextField = styled(TextField)`
+	width: 270px;
 `;
 
 const AddNewTodo = () => {
@@ -63,7 +67,7 @@ const AddNewTodo = () => {
 	return (
 		<StyledAddNewTodo>
 			<div>
-				<input
+				<StyledTextField
 					type="text"
 					placeholder="Title"
 					name="title"
@@ -73,12 +77,14 @@ const AddNewTodo = () => {
 				/>
 			</div>
 			<div>
-				<input
+				<StyledTextField
 					type="text"
 					placeholder="Description"
 					name="description"
 					value={newTodo.description}
 					onChange={onHandleChange}
+					multiline
+					rows={4}
 				/>
 			</div>
 			<div>
