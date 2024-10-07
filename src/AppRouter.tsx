@@ -11,15 +11,15 @@ const AppRouter = (): ReactElement => {
 			<Route
 				path="/"
 				element={
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<Home />
 					</Suspense>
 				}
 			/>
 			<Route
-				path="/add"
+				path="/AddNew"
 				element={
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<AddNew />
 					</Suspense>
 				}
@@ -27,7 +27,7 @@ const AppRouter = (): ReactElement => {
 			<Route
 				path="/DoneTodos"
 				element={
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div></div>}>
 						<DoneTodos />
 					</Suspense>
 				}
