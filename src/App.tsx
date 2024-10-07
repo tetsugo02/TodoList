@@ -1,13 +1,11 @@
-import AddNewTodo from "./components/AddNew";
-import TodoList from "./components/TodoList";
+import AppRouter from "./AppRouter";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
 	return (
-		<>
-			<TodoList isDone={false} />
-			<TodoList isDone={true} />
-			<AddNewTodo />
-		</>
+		<Router>
+			<AppRouter />
+		</Router>
 	);
 }
 
