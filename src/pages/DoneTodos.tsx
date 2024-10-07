@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
-import AddNewTodo from "../components/AddNew";
 import NavTabs from "../components/NavTabs";
+import TodoList from "../components/TodoList";
 
-const AddNew = () => {
+const DoneTodos = () => {
 	return (
 		<Box>
 			<NavTabs />
-			<AddNewTodo />
+			<TodoList isDone={true} />
 		</Box>
 	);
 };
 
-export default AddNew;
+export default DoneTodos;

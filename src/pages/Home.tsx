@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
-
 import TodoList from "../components/TodoList";
-import NavTabs from "../components/Navibar";
+import NavTabs from "../components/NavTabs";
 const Home = () => {
 	return (
 		<>
 			<NavTabs />
 			<TodoList isDone={false} />
-			<TodoList isDone={true} />
-			<Link to="/add">Add New Todo</Link>
 		</>
 	);
 };
