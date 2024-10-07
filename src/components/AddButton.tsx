@@ -1,5 +1,6 @@
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Box, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledBox = styled(Box)`
@@ -17,7 +18,8 @@ const AddButton = () => {
 				color="secondary"
 				variant="contained"
 				startIcon={<AddCircleIcon sx={{ fontSize: 100 }} />}
-				href="/AddNew"
+				component={Link}
+				to="/AddNew"
 			>
 				Add New
 			</Button>
