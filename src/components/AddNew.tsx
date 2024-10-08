@@ -78,6 +78,7 @@ const AddNewTodo = () => {
 
 	return (
 		<StyledAddNewTodo>
+			<h1>Add New Todo</h1>
 			<FormControl error={titleError}>
 				<StyledTextField
 					type="text"
