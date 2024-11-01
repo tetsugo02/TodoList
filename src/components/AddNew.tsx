@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
 import { Box, TextField, Button, FormControl, FormHelperText } from "@mui/material";
 
 import { TodoType } from "../types/TodoType";
@@ -78,6 +79,7 @@ const AddNewTodo = () => {
 
 	return (
 		<StyledAddNewTodo>
+			<CloseIcon></CloseIcon>
 			<h1>Add New Todo</h1>
 			<FormControl error={titleError}>
 				<StyledTextField

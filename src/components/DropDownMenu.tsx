@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import DeleteIcon from "@mui/icons-material/Delete";
 const ITEM_HEIGHT = 48;
 
 interface DropDownMenuProps {
@@ -44,12 +44,15 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({ onDelete }) => {
 					paper: {
 						style: {
 							maxHeight: ITEM_HEIGHT * 4.5,
-							width: "20ch",
+							width: "10ch",
 						},
 					},
 				}}
 			>
-				<MenuItem onClick={onDelete}>Delete</MenuItem>
+				<MenuItem onClick={onDelete}>
+					<DeleteIcon />
+					Delete
+				</MenuItem>
 			</Menu>
 		</div>
 	);
