@@ -44,6 +44,8 @@ const TodoList: React.FC<TodoListProps> = ({ isDone }) => {
 		});
 	};
 
+	// Todoを編集する関数
+
 	return (
 		<StyledTodoList>
 			<h2>Todo List({isDone ? "done" : "WIP"})</h2> {/* タイトルを表示 */}
