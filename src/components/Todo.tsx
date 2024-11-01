@@ -46,7 +46,7 @@ const Todo: React.FC<TodoProps> = ({
 					<ListItemText>{deadline}</ListItemText>
 				</div>
 				<div style={{ marginLeft: "auto" }}>
-					<DropDownMenu />
+					<DropDownMenu onDelete={() => onDelete(id)} />
 				</div>
 			</TodoHeader>
 			<Box display="flex" justifyContent="center" mt={2}>
@@ -57,14 +57,6 @@ const Todo: React.FC<TodoProps> = ({
 					style={{ width: "80px", marginRight: "10px" }}
 				>
 					{done ? "Undo" : "Done"}
-				</Button>
-				<Button
-					onClick={() => onDelete(id)}
-					color="secondary"
-					variant="contained"
-					style={{ width: "80px" }}
-				>
-					Delete
 				</Button>
 			</Box>
 		</TodoItem>

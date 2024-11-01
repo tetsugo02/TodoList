@@ -4,11 +4,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const options = ["Delete", "Edit"];
-
 const ITEM_HEIGHT = 48;
 
-const DropDownMenu = () => {
+interface DropDownMenuProps {
+	onDelete: () => void;
+}
+
+const DropDownMenu: React.FC<DropDownMenuProps> = ({ onDelete }) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -47,11 +49,7 @@ const DropDownMenu = () => {
 					},
 				}}
 			>
-				{options.map((option) => (
-					<MenuItem key={option} selected={option === "Pyxis"} onClick={handleClose}>
-						{option}
-					</MenuItem>
-				))}
+				<MenuItem onClick={onDelete}>Delete</MenuItem>
 			</Menu>
 		</div>
 	);
