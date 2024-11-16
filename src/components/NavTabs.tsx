@@ -21,10 +21,10 @@ const NavTabs = () => {
 		<StyledBox>
 			<ButtonGroup aria-label="nav tabs" role="navigation" color="secondary">
 				<Button component={Link} to="/">
-					Home
+					Todos
 				</Button>
 				<Button component={Link} to="/DoneTodos">
-					Done Todos
+					Already Done
 				</Button>
 			</ButtonGroup>
 		</StyledBox>
