@@ -123,7 +123,10 @@ const AddNewTodo: React.FC<AddNewTodoProps> = ({ onClose }) => {
 			<StyledBox>
 				<StyledButton
 					variant="contained"
-					onClick={handleAddTodo}
+					onClick={() => {
+						handleAddTodo();
+						onClose();
+					}}
 					disabled={newTodo.title.trim() === ""}
 				>
 					Add
