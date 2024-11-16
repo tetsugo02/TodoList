@@ -56,7 +56,7 @@ const AddButton = () => {
 			>
 				<Fade in={open}>
 					<Box sx={style}>
-						<AddNewTodo />
+						<AddNewTodo onClose={handleClose} />
 					</Box>
 				</Fade>
 			</Modal>

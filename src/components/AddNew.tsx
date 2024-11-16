@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, TextField, Button, FormControl, FormHelperText } from "@mui/material";
+import { Box, TextField, Button, FormControl, FormHelperText, IconButton } from "@mui/material";
 
 import { TodoType } from "../types/TodoType";
 import TodoListDataContext from "../contexts/TodoListData";
@@ -24,7 +24,17 @@ const StyledBox = styled(Box)`
 	margin: 10px;
 `;
 
-const AddNewTodo = () => {
+const CloseButton = styled(IconButton)`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+`;
+
+interface AddNewTodoProps {
+	onClose: () => void;
+}
+
+const AddNewTodo: React.FC<AddNewTodoProps> = ({ onClose }) => {
 	const todoContext = useContext(TodoListDataContext);
 	if (!todoContext) {
 		throw new Error("TodoListDataProvider must be used within a TodoListDataProvider");
@@ -79,7 +89,11 @@ const AddNewTodo = () => {
 
 	return (
 		<StyledAddNewTodo>
-			<CloseIcon></CloseIcon>
+			<Box sx={{ position: "relative", width: "100%" }}>
+				<CloseButton onClick={onClose}>
+					<CloseIcon />
+				</CloseButton>
+			</Box>
 			<h1>Add New Todo</h1>
 			<FormControl error={titleError}>
 				<StyledTextField
